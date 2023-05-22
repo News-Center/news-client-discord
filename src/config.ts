@@ -1,3 +1,4 @@
 export const Config = {
-    port: parseInt(process.env.PORT || "8080"),
+    port: parseInt(process.env.PORT || "9091"),
+    token: process.env.TOKEN,
 };
