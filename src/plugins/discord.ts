@@ -29,6 +29,7 @@ const discordPlugin: FastifyPluginAsync = fp(async server => {
 
     disocrd.on(Events.GuildMemberAdd, async member => {
         await member.send("Welcome to the server! Enjoy your stay.");
+        await member.send("Please Enter the following Id in the Website Description Field: " + member.id);
     });
     disocrd.login(Config.token);
 
