@@ -7,8 +7,8 @@ export default async function (fastify: FastifyInstance) {
         "/",
         {
             schema: {
-                description: "This is an endpoint for application health check",
-                tags: ["health"],
+                description: "This is an endpoint for receiving publish news",
+                tags: ["publish"],
                 response: {
                     200: {
                         description: "Success Response",
@@ -19,17 +19,23 @@ export default async function (fastify: FastifyInstance) {
         },
         (request, reply) => {
             const { handle, content, title } = request.body;
-            const sendPromises = handle.map(userId =>
-                fastify.discord.users.send(userId, "Subject: " + title + "\n\n" + content),
+            const sendPromises = handle.map(
+                userId =>
+                    fastify.discord.users
+                        .send(userId, "Subject: " + title + "\n\n" + content)
+                        .then(() => userId) // Resolve with the user ID if sending is successful
+                        .catch(() => undefined), // Resolve with undefined if there's an error
             );
 
             Promise.all(sendPromises)
-                .then(() => {
-                    reply.code(200).send();
+                .then(results => {
+                    const successfulUserIds = results.filter(userId => userId !== undefined);
+                    reply.code(200).send(JSON.stringify(successfulUserIds));
                 })
                 .catch(error => {
-                    fastify.log.error("Message was not sent - error:\n" + JSON.stringify(error));
+                    fastify.log.error("Message sending failed - error:\n" + JSON.stringify(error));
                     reply.code(400).send();
+                    throw error;
                 });
         },
     );
