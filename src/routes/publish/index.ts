@@ -19,7 +19,8 @@ export default async function (fastify: FastifyInstance) {
         },
         (request, reply) => {
             const { handle, content, title } = request.body;
-            const sendPromises = handle.map(
+
+            const sendPromises = [handle].map(
                 userId =>
                     fastify.discord.users
                         .send(userId, "Subject: " + title + "\n\n" + content)

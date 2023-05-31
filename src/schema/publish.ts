@@ -1,7 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
 
 export const PublishSchema = Type.Object({
-    handle: Type.Array(Type.String()),
+    handle: Type.String(),
     content: Type.String(),
     title: Type.String(),
 });
