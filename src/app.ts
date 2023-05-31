@@ -12,10 +12,12 @@ const __dirname = dirname(__filename);
 
 import discordPlugin from "./plugins/discord";
 import { swaggerOpts, swaggerUiOpts } from "./utils/swagger";
+import cors from "@fastify/cors";
 
 export function createServer(opts: FastifyServerOptions = {}): FastifyInstance {
     const app = fastify(opts).withTypeProvider<TypeBoxTypeProvider>();
 
+    app.register(cors);
     app.register(discordPlugin);
 
     app.register(swagger, swaggerOpts);
