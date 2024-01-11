@@ -19,6 +19,10 @@ In the case of `news-client-discord`, the Discord API is leveraged to seamlessly
 - Node.js Version 16
 - npm Version 8
 
+### Creating a API-Token
+Before deploying the client, you need to generate an API token, which you can do here: https://discord.com/developers/applications. The instructions on what steps to take can be found here: https://discord.com/developers/docs/getting-started.
+Subsequently, you must add the token to the .env file, and you can easily refer to .example.env for guidance.
+
 ## Dev-Setup
 
 1. Clone the repo
