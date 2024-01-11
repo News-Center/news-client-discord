@@ -1,4 +1,4 @@
-# General Purpose:
+# General Purpose
 
 The purpose of various news clients is to provide users with news updates from other sources than our website. Users have the flexibility to register for multiple services, one of which is the `news-client-discod`. This allows users to receive news updates directly within the Discord platform, enhancing their ability to stay informed through diverse channels beyond conventional web interfaces.
 
@@ -24,7 +24,7 @@ In the case of `news-client-discord`, the Discord API is leveraged to seamlessly
 1. Clone the repo
 
 ```bash
-  git clone git@github.com:News-Center/news-manager.git
+  git@github.com:News-Center/news-client-discord.git
 ```
 
 2. Install dependencies
@@ -40,3 +40,9 @@ In the case of `news-client-discord`, the Discord API is leveraged to seamlessly
   ubuntu run
   make up
 ```
+
+## Production-Setup
+
+Use `news-kraken` to deploy the entire application to a server. For more information see refer to the news-kraken
+repository.
+
